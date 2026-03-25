@@ -1,0 +1,10 @@
+.panel-container {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 350px auto;
+
+  .panel-content {
+    height: 100%;
+    padding: 1rem 2rem;
+  }
+}

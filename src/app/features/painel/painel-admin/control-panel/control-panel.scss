@@ -1,0 +1,131 @@
+.container {
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .container-cards {
+    justify-content: space-between;
+    gap: 1rem;
+
+    & .card {
+      flex: 1;
+      padding: 1rem;
+      border-radius: 8px;
+      background-color: #121215;
+      border: 1px solid #27272A;
+      display: grid;
+      grid-template-columns: 1fr auto;
+
+      & .title-card {
+        color: #71717A;
+        font-size: 16px;
+        text-transform: uppercase;
+      }
+
+      & .value-card {
+        color: #FAFAFA;
+        font-size: 36px;
+      }
+
+      & .warning-card {
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        &.info {
+          color: #A78BFA;
+        }
+
+        &.attention {
+          color: #EF4444;
+        }
+
+        &.better {
+          color: #34D399;
+        }
+      }
+    }
+  }
+
+  .container-scales {
+    & .container-header {
+      display: flex;
+      padding: 1rem 2rem;
+      align-items: center;
+      background-color: #18181b;
+      border: 1px solid #27272A;
+      border-radius: 8px 8px 0px 0px;
+      justify-content: space-between;
+
+      & .title {
+        color: #FAFAFA;
+        font-size: 20px;
+      }
+
+      & .subtitle {
+        color: #71717A;
+        font-size: 1rem;
+      }
+
+      & .designation {
+        height: 1rem;
+        display: flex;
+        padding: 1.3rem 1.5rem;
+        border-radius: 4px;
+        align-items: center;
+        background-color: #A78BFA;
+
+        color: #0A0012;
+        font-weight: 600;
+      }
+    }
+
+    & .container-content {
+      background-color: #121215;
+      border-right: 1px solid #27272A;
+      border-left: 1px solid #27272A;
+      border-bottom: 1px solid #27272A;
+      border-radius: 0px 0px 8px 8px;
+
+      & table {
+        width: 100%;
+        border-collapse: collapse;
+
+        & thead {
+          border-bottom: 1px solid #27272A;
+
+          & tr {
+            & th {
+              color: #71717A;
+              font-weight: 400;
+              padding: 1rem 2rem;
+            }
+          }
+        }
+
+        & tbody {
+          & tr {
+            & td {
+              max-width: 1rem;
+              padding: 1rem 2rem;
+
+              & .pending-badge {
+                border-radius: 15px;
+                padding: .3rem 1.5rem;
+                background-color: #7C3AED;
+              }
+
+              & .completed-badge {
+                border-radius: 15px;
+                padding: .3rem 1.5rem;
+                background-color: #065F46;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

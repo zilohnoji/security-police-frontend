@@ -1,0 +1,21 @@
+<div class="container">
+  <h1>Ative sua conta</h1>
+
+  <p class="hint">Digite o código de 8 dígitos enviado para seu email.</p>
+
+  <div class="container-input">
+    <label>Código</label>
+    <input
+      [(ngModel)]="this.code"
+      inputmode="numeric"
+      maxlength="8"
+      placeholder="00000000"
+      pattern="[0-9]{8}"
+    />
+  </div>
+
+  <button [disabled]="!(this.code() && this.code().length === 8)" (click)="FazerAtivacao()">
+    Ativar
+  </button>
+</div>
+

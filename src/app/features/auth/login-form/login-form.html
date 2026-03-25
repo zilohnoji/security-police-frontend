@@ -1,0 +1,50 @@
+<div class="auth-split">
+  <aside class="side" aria-hidden="true">
+    <div class="side-inner">
+      <div class="side-icon">
+        <svg viewBox="0 0 64 64" width="56" height="56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M32 6C42 12 52 14 54 14V30C54 44 43 54 32 58C21 54 10 44 10 30V14C12 14 22 12 32 6Z"
+            stroke="rgba(255,255,255,0.85)"
+            stroke-width="2"
+          />
+          <path
+            d="M32 14C40 18 47 19 49 19V29C49 40 41 48 32 52C23 48 15 40 15 29V19C17 19 24 18 32 14Z"
+            fill="rgba(37,99,235,0.25)"
+          />
+          <path
+            d="M22 32L29 39L42 26"
+            stroke="rgba(255,255,255,0.95)"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </div>
+
+      <h2>A gestão inteligente do seu esquadrão começa aqui!!</h2>
+      <p>Organize equipes, registre ocorrências e acompanhe resultados com segurança.</p>
+    </div>
+  </aside>
+
+  <div class="container">
+    <h1>Faça seu login!</h1>
+
+    <div class="container-input">
+      <label>Email</label>
+      <input [(ngModel)]="this.email" placeholder="Digite o email" />
+    </div>
+
+    <div class="container-input">
+      <label>Senha</label>
+      <input [(ngModel)]="this.password" placeholder="Digite sua senha" />
+    </div>
+
+    <button [disabled]="!(this.email() && this.password())" (click)="FazerLogin()">Entrar</button>
+
+    <p class="switch">
+      Não tem conta?
+      <a [routerLink]="['/cadastro']">Cadastre-se</a>
+    </p>
+  </div>
+</div>
