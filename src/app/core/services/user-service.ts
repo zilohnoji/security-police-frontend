@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { LoginRequest, LoginResponse } from '../dtos/auth/login.dto';
 import { ActivationResponse, SignupRequest, SignupResponse } from '../dtos/auth/signup.dto';
@@ -46,15 +46,18 @@ export class UserService {
       expired_access_token: localStorage.getItem('accessToken')
     };
 
+    console.log("RefreshToken() Invocado");
+
     return this.http.post<LoginResponse>(`${environment.apiUrl}/api/auth/refresh-token`, credentials,
       {
         headers: {
           'Content-Type': 'application/json',
         },
       },
-    ).pipe(tap(response => {
-      localStorage.setItem('accessToken', response.access_token);
-      localStorage.setItem('refreshToken', response.refresh_token);
-    }));
+    ).pipe(
+      tap((response) => {
+        localStorage.setItem('accessToken', response.access_token);
+        localStorage.setItem('refreshToken', response.refresh_token);
+      }));
   }
 }

@@ -63,7 +63,7 @@
             <th class="text-left">DATA & HORA</th>
             <th class="text-left">OPERAÇÃO / DESCRIÇÃO</th>
             <th class="text-left">PESSOAL DESIGNADO</th>
-            <th class="text-left">STATUS</th>
+            <th class="text-center">STATUS</th>
             <th class="text-right">AÇÃO</th>
           </tr>
         </thead>
@@ -89,7 +89,7 @@
             </td>
             <td class="text-left truncate">{{scale.description}}</td>
             <td class="text-left">asfsaf</td>
-            <td class="text-left">
+            <td class="text-center">
               <span [classList]="scale.isCompleted ? 'completed-badge ' : 'pending-badge '">{{scale.isCompleted ? 'CONCLUÍDA' : 'PENDENTE'}}</span>
             </td>
             <td>
