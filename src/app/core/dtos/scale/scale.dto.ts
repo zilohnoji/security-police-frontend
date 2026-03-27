@@ -1,4 +1,4 @@
-export interface ScaleDetailsResponseDto {
+export interface ScaleDetailsResponse {
   id: string,
   isCompleted: boolean,
   createdAt: Date,

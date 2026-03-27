@@ -11,7 +11,7 @@
 }
 
 .auth-split {
-  max-width: 65vh;
+  max-width: 65vw;
 
   & .split-header {
     display: flex;
@@ -33,8 +33,8 @@
   }
 
   .container {
+    width: 100%;
     gap: 1rem;
-    width: 35rem;
     padding: 1.5rem;
     border-radius: 12px;
     background-color: #121215;
@@ -49,7 +49,7 @@
     }
 
     & .container-input {
-      width: 100%;
+      width: 35rem;
       display: flex;
       flex-direction: column;
 

@@ -1,7 +1,7 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { LoginRequest, LoginResponse } from '../dtos/auth/login.dto';
-import { ActivationResponse, SignupRequest, SignupResponse } from '../dtos/auth/signup.dto';
+import { ActivationResponse, SignupUserRequest, SignupUserResponse } from '../dtos/auth/signup.dto';
 import { Observable, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
@@ -21,8 +21,8 @@ export class UserService {
     );
   }
 
-  Signup(credentials: SignupRequest): Observable<SignupResponse> {
-    return this.http.post<SignupResponse>(`${environment.apiUrl}/api/auth/signin-up`, credentials,
+  Signup(credentials: SignupUserRequest): Observable<SignupUserResponse> {
+    return this.http.post<SignupUserResponse>(`${environment.apiUrl}/api/auth/signin-up`, credentials,
       {
         headers: {
           'Content-Type': 'application/json',

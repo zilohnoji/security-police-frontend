@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
-import { ScaleDetailsResponseDto } from '../dtos/scale/scale.dto';
+import { ScaleDetailsResponse } from '../dtos/scale/scale.dto';
 import { Page } from '../dtos/page.dto';
 
 @Injectable({
@@ -11,8 +11,8 @@ import { Page } from '../dtos/page.dto';
 export class ScaleService {
   private httpClient = inject(HttpClient);
 
-  GetScales(): Observable<Page<ScaleDetailsResponseDto>> {
-    return this.httpClient.get<Page<ScaleDetailsResponseDto>>(`${environment.apiUrl}/api/scales`, {
+  GetScales(): Observable<Page<ScaleDetailsResponse>> {
+    return this.httpClient.get<Page<ScaleDetailsResponse>>(`${environment.apiUrl}/api/scales`, {
       headers: {
         'Content-Type': 'application/json',
       },

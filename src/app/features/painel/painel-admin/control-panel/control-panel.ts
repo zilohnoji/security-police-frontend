@@ -1,6 +1,6 @@
 import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { ScaleService } from '../../../../core/services/scale-service';
-import { ScaleDetailsResponseDto } from '../../../../core/dtos/scale/scale.dto';
+import { ScaleDetailsResponse } from '../../../../core/dtos/scale/scale.dto';
 import { Page } from '../../../../core/dtos/page.dto';
 import { DatePipe } from '@angular/common';
 
@@ -12,7 +12,7 @@ import { DatePipe } from '@angular/common';
 })
 export class ControlPanel {
   private scaleService = inject(ScaleService);
-  protected scales: WritableSignal<Page<ScaleDetailsResponseDto> | null> = signal(null);
+  protected scales: WritableSignal<Page<ScaleDetailsResponse> | null> = signal(null);
 
   ngAfterViewInit() {
     this.scaleService.GetScales().subscribe((response) => {
