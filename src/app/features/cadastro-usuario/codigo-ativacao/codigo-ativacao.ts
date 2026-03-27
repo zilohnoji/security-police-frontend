@@ -5,10 +5,11 @@ import { UserService } from '../../../core/services/user-service';
 import { ActivationResponse } from '../../../core/dtos/auth/signup.dto';
 import { SignupStateService } from '../../../core/services/signup-state-service';
 import { concat, concatMap, retryWhen, tap } from 'rxjs';
+import { WizardStep } from "../wizard-step/wizard-step";
 
 @Component({
   selector: 'app-codigo-ativacao',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, WizardStep],
   templateUrl: './codigo-ativacao.html',
   styleUrl: './codigo-ativacao.scss',
 })
@@ -79,6 +80,7 @@ export class CodigoAtivacao implements OnInit {
           tap((res) => {
             localStorage.setItem("accessToken", res.access_token);
             localStorage.setItem("refreshToken", res.refresh_token);
+            
             this.router.navigate(['/cadastro-pessoa']);
           })
         );

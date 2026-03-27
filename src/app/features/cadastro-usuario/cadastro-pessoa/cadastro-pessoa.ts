@@ -1,13 +1,14 @@
 import { Component, inject } from '@angular/core';
-import { SignupPersonRequest, SignupPersonResponse, SignupUserRequest, SignupUserResponse } from '../../../core/dtos/auth/signup.dto';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { SignupPersonRequest, SignupPersonResponse } from '../../../core/dtos/auth/signup.dto';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SignupStateService } from '../../../core/services/signup-state-service';
 import { PersonServices } from '../../../core/services/person-services';
+import { WizardStep } from "../wizard-step/wizard-step";
 
 @Component({
   selector: 'app-cadastro-pessoa',
-  imports: [],
+  imports: [ReactiveFormsModule, WizardStep],
   templateUrl: './cadastro-pessoa.html',
   styleUrl: './cadastro-pessoa.scss',
 })

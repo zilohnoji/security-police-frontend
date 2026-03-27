@@ -3,10 +3,11 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router, RouterLink } from '@angular/router';
 import { UserService } from '../../core/services/user-service';
 import { SignupUserRequest, SignupUserResponse } from '../../core/dtos/auth/signup.dto';
+import { WizardStep } from './wizard-step/wizard-step';
 
 @Component({
   selector: 'app-cadastro-usuario',
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, WizardStep],
   templateUrl: './cadastro-usuario.html',
   styleUrl: './cadastro-usuario.scss',
 })

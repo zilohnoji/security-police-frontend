@@ -1,4 +1,6 @@
-<!-- <div class="auth-split">
+<app-wizard-step actualStep="personalData"/>
+
+<div class="auth-split">
   <div class="split-header">
     <span>Ficha Cadastral</span>
     <h1 class="title">Dados Pessoais do Agente</h1>
@@ -12,7 +14,7 @@
       <span>Identificação Base</span>
     </div>
     <div class="container-credentials">
-      <form [formGroup]="personForm">
+      <form [formGroup]="this.personForm">
         <div class="container-data">
           <div class="container-input flex-2">
             <label for="name">Nome Completo</label>
@@ -100,10 +102,10 @@
       </svg>
       Cancelar
     </button>
-    <button [disabled]="!this.personForm.valid || !this.userForm.valid" (click)="Register()" class="save-btn">Salvar e Continuar
+    <button [disabled]="!this.personForm.valid" (click)="Register()" class="save-btn">Salvar e Continuar
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
         <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
       </svg>
     </button>
   </div>
-</div> -->
+</div>

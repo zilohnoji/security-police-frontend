@@ -13,5 +13,6 @@ export const routes: Routes = [
     path: 'painel',
     loadChildren: () => import('./features/painel/painel.routes').then(m => m.painelRoutes),
     canActivate: [authGuard],
-  }
+  },
+  { path: "**", loadComponent: () => import('./features/not-found/not-found').then(m => m.NotFound) }
 ];

@@ -1,10 +1,25 @@
 import { inject } from '@angular/core';
-import { CanActivateFn, Router, UrlTree } from '@angular/router';
+import { CanActivateFn, Router } from '@angular/router';
+import { PersonServices } from '../services/person-services';
+import { catchError, map, of } from 'rxjs';
 
-export const authGuard: CanActivateFn = (): boolean | UrlTree => {
-  const router = inject(Router);
+export const authGuard: CanActivateFn = () => {
   const token = localStorage.getItem('accessToken');
+  const router = inject(Router);
+  const personService = inject(PersonServices);
 
-  if (token) return true;
-  return router.parseUrl('/login');
+  if (!token) return router.parseUrl("/login");
+
+  return personService.MyProfile().pipe(
+    map((response) => {
+      console.log(response);
+      return true;
+    }),
+    catchError((err) => {
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+
+      return of(router.parseUrl("/login"));
+    })
+  );
 };

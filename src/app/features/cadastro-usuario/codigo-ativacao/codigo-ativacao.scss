@@ -1,9 +1,10 @@
 :host {
   display: flex;
-  justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding: 0 4rem;
+  padding: 2rem 4rem;
+  gap: 2rem;
+  flex-direction: column;
 }
 
 .layout {

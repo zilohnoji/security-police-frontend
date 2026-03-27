@@ -4,7 +4,9 @@
   min-height: 100vh;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   background-color: #09090b;
+  gap: 2rem;
 }
 
 .auth-split {

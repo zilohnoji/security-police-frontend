@@ -3,6 +3,7 @@ import { Routes } from '@angular/router';
 import { publicOnlyGuard } from '../../core/guards/public-only.guard';
 import { registeredUserGuard } from '../../core/guards/registered-user.guard';
 import { authGuard } from '../../core/guards/auth.guard';
+import { authRegisterPersonGuard } from '../../core/guards/auth-register-person.guard';
 
 export const authRoutes: Routes = [
   {
@@ -36,7 +37,7 @@ export const authRoutes: Routes = [
         path: 'cadastro-pessoa',
         loadComponent: () => import('../cadastro-usuario/cadastro-pessoa/cadastro-pessoa').then(m => m.CadastroPessoa),
         title: 'Dados Pessoais',
-        canActivate: [authGuard]
+        canActivate: [authRegisterPersonGuard]
       }
     ]
   }
