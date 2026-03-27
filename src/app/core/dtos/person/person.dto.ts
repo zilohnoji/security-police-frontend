@@ -2,6 +2,7 @@ import { ScaleDetailsResponse } from "../scale/scale.dto";
 
 export interface PersonDetailsResponse {
   id: string;
+  role: string;
   profile: ProfileDetailsResponse;
   address: AddressDetailsResponse;
   scales: ScaleDetailsResponse[];

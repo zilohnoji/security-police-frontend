@@ -3,23 +3,19 @@ import { CanActivateFn, Router } from '@angular/router';
 import { PersonServices } from '../services/person-services';
 import { catchError, map, of } from 'rxjs';
 
-export const authGuard: CanActivateFn = (route, state) => {
-  const token = localStorage.getItem('accessToken');
-  const router = inject(Router);
+export const authAgentGuard: CanActivateFn = (route, state) => {
   const personService = inject(PersonServices);
-
-  if (!token) return router.parseUrl("/login");
+  const router = inject(Router);
 
   return personService.MyProfile().pipe(
     map((response) => {
-      console.log(route);
-      return true;
+      if (response.role.toLowerCase() == 'agent') {
+        return true;
+      }
+      return false;
     }),
     catchError((err) => {
-      localStorage.removeItem("accessToken");
-      localStorage.removeItem("refreshToken");
-
       return of(router.parseUrl("/login"));
     })
-  );
+  )
 };
