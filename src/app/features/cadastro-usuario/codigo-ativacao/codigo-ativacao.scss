@@ -3,74 +3,184 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding: 2rem;
+  padding: 0 4rem;
 }
 
-.container-input {
-  label {
-    font-size: 1rem;
-    font-family: inherit;
-    font-weight: 600;
-    margin-bottom: 8px;
-  }
-
-  input {
-    width: 100%;
-    height: auto;
-    padding: 0.6rem 0.75rem;
-    border-radius: 6px;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    background: rgba(255, 255, 255, 0.06);
-    color: inherit;
-    outline: none;
-  }
-
+.layout {
+  width: 100%;
   display: flex;
-  flex-direction: column;
-}
-
-button {
-  padding: 0.7rem 0;
-  margin-top: 0.5rem;
-  border: none;
-  border-radius: 6px;
-  background: #2563eb;
-  color: #ffffff;
-  font-weight: 600;
-  cursor: pointer;
-
-  &:disabled {
-    cursor: not-allowed;
-    background: rgba(37, 99, 235, 0.35);
-  }
-}
-
-.container {
-  padding: 2.5rem;
-  gap: 1rem;
-  width: min(520px, 100%);
-  max-width: 520px;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.15);
-  display: flex;
+  gap: 2rem;
+  align-items: center;
   flex-direction: column;
 
-  h1 {
-    font-size: 1.8rem;
-    letter-spacing: 0.2px;
+  & .container {
+    gap: 2rem;
+    display: flex;
+    padding: 2rem;
+    max-width: 40%;
+    flex-direction: column;
+    border-radius: 12px;
+    background-color: #121215;
+    border: 1px solid #27272A;
+
+    & .container-header {
+      gap: 1rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+
+      & .container-title {
+        display: flex;
+        align-items: center;
+
+        & .container-ico {
+          color: #A78BFA;
+          padding: 8px;
+          margin-right: 1rem;
+          border-radius: 12px;
+          background-color: #211e2c;
+        }
+
+        & .title {
+          color: #fafafa;
+          font-size: 2rem;
+          font-weight: 600;
+        }
+
+      }
+
+      & .description {
+        color: #A1A1AA;
+        font-weight: 600;
+        font-size: 1.1rem;
+        max-width: 45ch;
+      }
+
+      & .opacity-icon {
+        top: -2rem;
+        right: -2rem;
+        color: #29292c;
+        position: absolute;
+      }
+    }
+
+    & .container-input {
+      display: flex;
+      gap: 1rem;
+
+      input {
+        width: 100%;
+        height: auto;
+        outline: none;
+        color: inherit;
+        text-align: center;
+        border-radius: 8px;
+        background: #0f0f12;
+        padding: 0.85rem 0.75rem;
+        border: 2px solid rgba(255, 255, 255, 0.14);
+
+        &:focus {
+          border: 2px solid #A78BFA;
+        }
+      }
+    }
+
+    & .container-btn {
+      gap: 1rem;
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 4rem;
+      border-bottom: 1px solid #27272A;
+
+      & .active-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: .5rem;
+        padding: 1rem;
+        border-radius: 8px;
+        font-weight: 700;
+        color: #0A0012;
+        cursor: pointer;
+        background-color: #A78BFA;
+
+        & svg:has(button:enabled){
+          cursor: pointer;
+        }
+
+        & button:enabled{
+          cursor: pointer
+        }
+
+        &:has(button:disabled) {
+          opacity: 30%;
+          font-weight: 500;
+          cursor: auto;
+        }
+      }
+
+    }
+
+    & .resend-btn {
+      color: #A1A1AA;
+      gap: .5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
-  .hint {
-    opacity: 0.85;
-    margin-bottom: 0.5rem;
+  & .footer {
+    display: flex;
+    justify-content: space-between;
+
+    & div {
+      gap: .5rem;
+      display: flex;
+      align-items: center;
+
+      color: #A1A1AA;
+      font-size: 14px;
+    }
+  }
+
+  & .card-container {
+    display: flex;
+    gap: 1rem;
+    max-width: 40%;
+
+    & .card {
+      padding: 1rem;
+      border-radius: 8px;
+      background-color: #0f0f12;
+      border: 1px solid #27272A;
+      gap: .5rem;
+      display: flex;
+      align-items: start;
+      justify-content: start;
+
+      & .green {
+        color: #34D399;
+      }
+
+      & .purple {
+        color: #A78BFA;
+      }
+
+      & .gray {
+        color: #71717A;
+      }
+
+      & .title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #FAFAFA;
+      }
+
+      & .subtitle {
+        font-size: 14px;
+        color: #A1A1AA;
+      }
+    }
   }
 }
-
-@media (max-width: 480px) {
-  .container {
-    padding: 1.75rem;
-  }
-}
-

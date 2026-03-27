@@ -1,131 +1,75 @@
 <div class="auth-split">
-  <div class="split-header">
-    <span>Ficha Cadastral</span>
-    <h1 class="title">Dados Pessoais do Agente</h1>
-    <h2 class="subtitle">Preencha os campos abaixo com as informações oficiais para registro no Ops.</h2>
+
+  <div class="banner">
+    <div class="banner-header">
+      <div class="flex gap-1 items-center">
+        <div class="ico">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
+          </svg>
+        </div>
+        <h1 class="title">Obsidian Ops</h1>
+      </div>
+      <h2 class="subtitle"><span>Onboarding de </span>Novos Operadores.</h2>
+      <p class="description">Bem-vindo ao centro de comando tático. Complete seu registro oficial para obter credenciais de acesso ao ecossistema obsidian.</p>
+    </div>
+    <div class="banner-footer">
+      <div class="item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 green">
+          <path fill-rule="evenodd" d="M15.75 1.5a6.75 6.75 0 0 0-6.651 7.906c.067.39-.032.717-.221.906l-6.5 6.499a3 3 0 0 0-.878 2.121v2.818c0 .414.336.75.75.75H6a.75.75 0 0 0 .75-.75v-1.5h1.5A.75.75 0 0 0 9 19.5V18h1.5a.75.75 0 0 0 .53-.22l2.658-2.658c.19-.189.517-.288.906-.22A6.75 6.75 0 1 0 15.75 1.5Zm0 3a.75.75 0 0 0 0 1.5A2.25 2.25 0 0 1 18 8.25a.75.75 0 0 0 1.5 0 3.75 3.75 0 0 0-3.75-3.75Z" clip-rule="evenodd" />
+        </svg>
+        <div>
+          <span>Criptografia End-to-End</span>
+          <p>Seus dados militares são protegidos por protocolos de nível Obsidian.</p>
+        </div>
+      </div>
+      <div class="item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 purple">
+          <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM8.547 4.505a8.25 8.25 0 1 0 11.672 8.214l-.46-.46a2.252 2.252 0 0 1-.422-.586l-1.08-2.16a.414.414 0 0 0-.663-.107.827.827 0 0 1-.812.21l-1.273-.363a.89.89 0 0 0-.738 1.595l.587.39c.59.395.674 1.23.172 1.732l-.2.2c-.211.212-.33.498-.33.796v.41c0 .409-.11.809-.32 1.158l-1.315 2.191a2.11 2.11 0 0 1-1.81 1.025 1.055 1.055 0 0 1-1.055-1.055v-1.172c0-.92-.56-1.747-1.414-2.089l-.654-.261a2.25 2.25 0 0 1-1.384-2.46l.007-.042a2.25 2.25 0 0 1 .29-.787l.09-.15a2.25 2.25 0 0 1 2.37-1.048l1.178.236a1.125 1.125 0 0 0 1.302-.795l.208-.73a1.125 1.125 0 0 0-.578-1.315l-.665-.332-.091.091a2.25 2.25 0 0 1-1.591.659h-.18c-.249 0-.487.1-.662.274a.931.931 0 0 1-1.458-1.137l1.279-2.132Z" clip-rule="evenodd" />
+        </svg>
+        <div>
+          <span>Rede Integrada</span>
+          <p>Acesso instantâneo a ativos, terminais de comando e logs de registro.</p>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="container">
-    <div class="container-identify">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-      </svg>
-      <span>Credenciais de Acesso</span>
+
+  <div class="content">
+    <div>
+      <h1 class="title">Cadastro de Agente</h1>
+      <h2 class="subtitle">Insira suas credenciais para inicialização do perfil.</h2>
     </div>
     <div class="container-credentials">
       <form [formGroup]="userForm">
         <div class="container-data">
-          <div class="container-input flex-1">
+          <div class="container-input">
             <label for="email">Email</label>
             <input type="text" formControlName="email" placeholder="Digite seu email">
           </div>
-          <div class="container-input flex-1">
+          <div class="container-input">
             <label for="password">Senha</label>
             <input type="password" formControlName="password" placeholder="Digite sua senha">
           </div>
-        </div>
-      </form>
-    </div>
-  </div>
-  <div class="container">
-    <div class="container-identify">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Zm6-10.125a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm1.294 6.336a6.721 6.721 0 0 1-3.17.789 6.721 6.721 0 0 1-3.168-.789 3.376 3.376 0 0 1 6.338 0Z" />
-      </svg>
-      <span>Identificação Base</span>
-    </div>
-    <div class="container-credentials">
-      <form [formGroup]="personForm">
-        <div class="container-data">
-          <div class="container-input flex-2">
-            <label for="name">Nome Completo</label>
-            <input type="text" formControlName="fullName" placeholder="Digite seu nome">
-          </div>
-          <div class="container-input flex-1">
-            <label for="birthdate">Data de Nascimento</label>
-            <input type="date" formControlName="birthDate">
-          </div>
-        </div>
-        <div class="container-data">
-          <div class="container-input  flex-1">
-            <label for="motherName">Nome da Mãe</label>
-            <input type="text" formControlName="motherName" placeholder="Filiação Materna">
-          </div>
-          <div class="container-input  flex-1">
-            <label for="fatherName">Nome do Pai</label>
-            <input type="text" formControlName="fatherName" placeholder="Filiação Paterna">
-          </div>
-        </div>
-        <div class="container-data">
-          <div class="container-input flex-1">
-            <label for="gender">Gênero</label>
-            <div class="select-container">
-              <select formControlName="gender" name="gender" id="gender">
-                <option value="">Selecione uma opção</option>
-                <option [value]="'male'">Masculino</option>
-                <option [value]="'female'">Feminino</option>
-              </select>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 select-ico">
-                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-              </svg>
-            </div>
-          </div>
-          <div class="container-input flex-3">
-            <label for="cellphone">Celular (Mobile)</label>
-            <input type="text" placeholder="Número de celular">
+          <div class="container-input">
+            <label for="password">Confirmação de Senha</label>
+            <input type="password" placeholder="Confirme sua senha novamente">
           </div>
         </div>
       </form>
     </div>
-  </div>
-  <div class="container">
-    <div class="container-identify">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
-      </svg>
-      <span>Localização Residencial</span>
+    <div class="footer">
+      <div class="save-container">
+        <button [disabled]="!this.userForm.valid" (click)="Register()" class="save-btn">Finalizar Cadastro
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+          </svg>
+        </button>
+      </div>
+      <div class="cancel-btn">
+        <p>Já possui uma conta ativa?</p>
+        <a routerLink="/login">Acessar Terminal Obsidian</a>
+      </div>
     </div>
-    <div class="container-credentials">
-      <form [formGroup]="personForm">
-        <div class="container-data">
-          <div class="container-input flex-1">
-            <label for="street">Rua</label>
-            <input type="text" formControlName="street" placeholder="Logradouro">
-          </div>
-          <div class="container-input flex-2">
-            <label for="streetNumber">Número</label>
-            <input type="text" formControlName="number" placeholder="000">
-          </div>
-        </div>
-        <div class="container-data">
-          <div class="container-input flex-3">
-            <label for="neighborhood">Bairro</label>
-            <input type="text" formControlName="neighborhood" placeholder="Setor/Bairro">
-          </div>
-          <div class="container-input flex-3">
-            <label for="city">Cidade</label>
-            <input type="text" formControlName="cityName" placeholder="Nome da cidade">
-          </div>
-          <div class="container-input flex-1">
-            <label for="name">UF</label>
-            <input type="text" formControlName="cityUf" placeholder="Estado">
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <div class="container-footer">
-    <button routerLink="/login" class="cancel-btn">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
-      </svg>
-      Cancelar
-    </button>
-    <button [disabled]="!this.personForm.valid || !this.userForm.valid" (click)="Register()" class="save-btn">Salvar e Continuar
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
-        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-      </svg>
-    </button>
   </div>
 </div>

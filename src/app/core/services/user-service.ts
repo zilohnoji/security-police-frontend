@@ -27,7 +27,11 @@ export class UserService {
         headers: {
           'Content-Type': 'application/json',
         },
-      });
+      }).pipe(
+        tap((response) => {
+          localStorage.setItem("email", response.email);
+        })
+      );
   }
 
   ActivateAccount(userEmail: string, emailCode: string): Observable<ActivationResponse> {
@@ -45,8 +49,6 @@ export class UserService {
       refresh_token: localStorage.getItem('refreshToken'),
       expired_access_token: localStorage.getItem('accessToken')
     };
-
-    console.log("RefreshToken() Invocado");
 
     return this.http.post<LoginResponse>(`${environment.apiUrl}/api/auth/refresh-token`, credentials,
       {

@@ -1,0 +1,109 @@
+<!-- <div class="auth-split">
+  <div class="split-header">
+    <span>Ficha Cadastral</span>
+    <h1 class="title">Dados Pessoais do Agente</h1>
+    <h2 class="subtitle">Preencha os campos abaixo com as informações oficiais para registro no Ops.</h2>
+  </div>
+  <div class="container">
+    <div class="container-identify">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Zm6-10.125a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm1.294 6.336a6.721 6.721 0 0 1-3.17.789 6.721 6.721 0 0 1-3.168-.789 3.376 3.376 0 0 1 6.338 0Z" />
+      </svg>
+      <span>Identificação Base</span>
+    </div>
+    <div class="container-credentials">
+      <form [formGroup]="personForm">
+        <div class="container-data">
+          <div class="container-input flex-2">
+            <label for="name">Nome Completo</label>
+            <input type="text" formControlName="fullName" placeholder="Digite seu nome">
+          </div>
+          <div class="container-input flex-1">
+            <label for="birthdate">Data de Nascimento</label>
+            <input type="date" formControlName="birthDate">
+          </div>
+        </div>
+        <div class="container-data">
+          <div class="container-input  flex-1">
+            <label for="motherName">Nome da Mãe</label>
+            <input type="text" formControlName="motherName" placeholder="Filiação Materna">
+          </div>
+          <div class="container-input  flex-1">
+            <label for="fatherName">Nome do Pai</label>
+            <input type="text" formControlName="fatherName" placeholder="Filiação Paterna">
+          </div>
+        </div>
+        <div class="container-data">
+          <div class="container-input flex-1">
+            <label for="gender">Gênero</label>
+            <div class="select-container">
+              <select formControlName="gender" name="gender" id="gender">
+                <option value="">Selecione uma opção</option>
+                <option [value]="'male'">Masculino</option>
+                <option [value]="'female'">Feminino</option>
+              </select>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 select-ico">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </div>
+          </div>
+          <div class="container-input flex-3">
+            <label for="cellphone">Celular (Mobile)</label>
+            <input type="text" placeholder="Número de celular">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="container">
+    <div class="container-identify">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+      </svg>
+      <span>Localização Residencial</span>
+    </div>
+    <div class="container-credentials">
+      <form [formGroup]="personForm">
+        <div class="container-data">
+          <div class="container-input flex-1">
+            <label for="street">Rua</label>
+            <input type="text" formControlName="street" placeholder="Logradouro">
+          </div>
+          <div class="container-input flex-2">
+            <label for="streetNumber">Número</label>
+            <input type="text" formControlName="number" placeholder="000">
+          </div>
+        </div>
+        <div class="container-data">
+          <div class="container-input flex-3">
+            <label for="neighborhood">Bairro</label>
+            <input type="text" formControlName="neighborhood" placeholder="Setor/Bairro">
+          </div>
+          <div class="container-input flex-3">
+            <label for="city">Cidade</label>
+            <input type="text" formControlName="cityName" placeholder="Nome da cidade">
+          </div>
+          <div class="container-input flex-1">
+            <label for="name">UF</label>
+            <input type="text" formControlName="cityUf" placeholder="Estado">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="container-footer">
+    <button routerLink="/login" class="cancel-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+      </svg>
+      Cancelar
+    </button>
+    <button [disabled]="!this.personForm.valid || !this.userForm.valid" (click)="Register()" class="save-btn">Salvar e Continuar
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+      </svg>
+    </button>
+  </div>
+</div> -->

@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
 
 import { publicOnlyGuard } from '../../core/guards/public-only.guard';
+import { registeredUserGuard } from '../../core/guards/registered-user.guard';
+import { authGuard } from '../../core/guards/auth.guard';
 
 export const authRoutes: Routes = [
   {
@@ -19,21 +21,23 @@ export const authRoutes: Routes = [
         canActivate: [publicOnlyGuard],
       },
       {
-        path: 'cadastro',
-        loadComponent: () =>
-          import('../cadastro-usuario/cadastro-usuario').then(m => m.CadastroUsuario),
+        path: 'cadastro-usuario',
+        loadComponent: () => import('../cadastro-usuario/cadastro-usuario').then(m => m.CadastroUsuario),
         title: 'Cadastro',
         canActivate: [publicOnlyGuard],
       },
       {
-        path: 'ativar/:userEmail',
-        loadComponent: () =>
-          import('../cadastro-usuario/codigo-ativacao/codigo-ativacao').then(
-            m => m.CodigoAtivacao,
-          ),
+        path: 'ativar',
+        loadComponent: () => import('../cadastro-usuario/codigo-ativacao/codigo-ativacao').then(m => m.CodigoAtivacao),
         title: 'Ativação',
-        canActivate: [publicOnlyGuard],
+        canActivate: [registeredUserGuard],
       },
+      {
+        path: 'cadastro-pessoa',
+        loadComponent: () => import('../cadastro-usuario/cadastro-pessoa/cadastro-pessoa').then(m => m.CadastroPessoa),
+        title: 'Dados Pessoais',
+        canActivate: [authGuard]
+      }
     ]
   }
 ];
