@@ -1,9 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { UserService } from '../../core/services/user-service';
-import { SignupUserRequest, SignupUserResponse } from '../../core/dtos/auth/signup.dto';
-import { WizardStep } from './wizard-step/wizard-step';
+import { UserService } from '../../../../core/services/user-service';
+import { SignupUserRequest } from '../../dtos/request/signup-user.request.dto';
+import { SignupUserResponse } from '../../dtos/response/signup-user.response.dto';
+import { WizardStep } from '../../components/wizard-step/wizard-step';
 
 @Component({
   selector: 'app-cadastro-usuario',

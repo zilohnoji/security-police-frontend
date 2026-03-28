@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { SignupPersonRequest, SignupPersonResponse } from '../dtos/auth/signup.dto';
+import { SignupPersonRequest } from '../../features/cadastro-usuario/dtos/request/signup-person.request.dto';
+import { SignupPersonResponse } from '../../features/cadastro-usuario/dtos/response/signup-person.response.dto';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { PersonDetailsResponse } from '../dtos/person/person.dto';
+import { PersonDetailsResponse } from '../../shared/dtos/response/person/reponse-details.dto';
 
 @Injectable({
   providedIn: 'root',

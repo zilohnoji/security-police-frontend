@@ -1,11 +1,11 @@
 import { Component, inject, input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from '../../../core/services/user-service';
-import { ActivationResponse } from '../../../core/dtos/auth/signup.dto';
-import { SignupStateService } from '../../../core/services/signup-state-service';
+import { UserService } from '../../../../core/services/user-service';
+import { ActivationResponse } from '../../dtos/response/activation-user.response.dto';
+import { SignupStateService } from '../../../../core/services/signup-state-service';
 import { concat, concatMap, retryWhen, tap } from 'rxjs';
-import { WizardStep } from "../wizard-step/wizard-step";
+import { WizardStep } from '../../components/wizard-step/wizard-step';
 
 @Component({
   selector: 'app-codigo-ativacao',
@@ -80,7 +80,7 @@ export class CodigoAtivacao implements OnInit {
           tap((res) => {
             localStorage.setItem("accessToken", res.access_token);
             localStorage.setItem("refreshToken", res.refresh_token);
-            
+
             this.router.navigate(['/cadastro-pessoa']);
           })
         );

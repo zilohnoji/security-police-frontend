@@ -1,7 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { LoginRequest, LoginResponse } from '../dtos/auth/login.dto';
-import { ActivationResponse, SignupUserRequest, SignupUserResponse } from '../dtos/auth/signup.dto';
+import { LoginRequest } from '../../features/auth/dtos/request/login.request.dto';
+import { LoginResponse } from '../../features/auth/dtos/response/login.response.dto';
+import { SignupUserRequest } from '../../features/cadastro-usuario/dtos/request/signup-user.request.dto';
+import { SignupUserResponse } from '../../features/cadastro-usuario/dtos/response/signup-user.response.dto';
+import { ActivationResponse } from '../../features/cadastro-usuario/dtos/response/activation-user.response.dto';
 import { Observable, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 

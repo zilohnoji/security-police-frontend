@@ -11,24 +11,24 @@ export const painelRoutes: Routes = [
     children: [
       {
         path: 'admin',
-        loadComponent: () => import('./painel-admin/painel-admin').then(m => m.PainelAdmin),
+        loadComponent: () => import('./pages/admin/painel-admin').then(m => m.PainelAdmin),
         canActivate: [authAdminGuard],
         children: [
           {
             path: '',
-            loadComponent: () => import('./painel-admin/control-panel/control-panel').then(m => m.ControlPanel),
+            loadComponent: () => import('./pages/admin/control-panel/control-panel').then(m => m.ControlPanel),
             title: 'Home'
           },
           {
             path: 'users',
-            loadComponent: () => import('./painel-admin/control-users/control-users').then(m => m.ControlUsers),
+            loadComponent: () => import('./pages/admin/control-users/control-users').then(m => m.ControlUsers),
             title: 'Usuários'
           }
         ]
       },
       {
         path: 'agent',
-        loadComponent: () => import('./painel-agent/painel-agent').then(m => m.PainelAgent),
+        loadComponent: () => import('./pages/agent/painel-agent').then(m => m.PainelAgent),
         canActivate: [authAgentGuard],
         children: []
       }

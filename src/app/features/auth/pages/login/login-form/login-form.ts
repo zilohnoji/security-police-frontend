@@ -1,7 +1,8 @@
 import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { UserService } from '../../../core/services/user-service';
-import { LoginRequest, LoginResponse } from '../../../core/dtos/auth/login.dto';
+import { UserService } from '../../../../../core/services/user-service';
+import { LoginRequest } from '../../../dtos/request/login.request.dto';
+import { LoginResponse } from '../../../dtos/response/login.response.dto';
 import { Observable } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
 
