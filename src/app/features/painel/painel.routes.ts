@@ -1,13 +1,13 @@
 import { Routes } from '@angular/router';
-import { authDirectPanelGuard } from '../../core/guards/auth-direct-panel.guard';
 import { authAdminGuard } from '../../core/guards/auth-admin.guard';
 import { authAgentGuard } from '../../core/guards/auth-agent.guard';
+import { authGuard } from '../../core/guards/auth.guard';
 
 export const painelRoutes: Routes = [
   {
     path: '',
     loadComponent: () => import('./painel').then(m => m.Painel),
-    canActivate: [authDirectPanelGuard],
+    canActivate: [authGuard],
     children: [
       {
         path: 'admin',

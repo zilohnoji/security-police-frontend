@@ -1,10 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { SignupPersonRequest } from '../../dtos/request/signup-person.request.dto';
 import { SignupPersonResponse } from '../../dtos/response/signup-person.response.dto';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { SignupStateService } from '../../../../core/services/signup-state-service';
-import { PersonServices } from '../../../../core/services/person-services';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PersonService } from '../../../../core/services/person-services';
 import { WizardStep } from '../../components/wizard-step/wizard-step';
 
 @Component({
@@ -13,7 +12,7 @@ import { WizardStep } from '../../components/wizard-step/wizard-step';
   templateUrl: './cadastro-pessoa.html',
   styleUrl: './cadastro-pessoa.scss',
 })
-export class CadastroPessoa {
+export class CadastroPessoa implements OnInit {
   protected personForm = new FormGroup({
     fullName: new FormControl('', [Validators.required]),
     birthDate: new FormControl('', [Validators.required]),
@@ -27,9 +26,18 @@ export class CadastroPessoa {
     cityUf: new FormControl('', [Validators.required]),
   });
 
-  protected signupStateService = inject(SignupStateService);
-  protected personService = inject(PersonServices);
-  protected router = inject(Router);
+  private _personService = inject(PersonService);
+  private _activatedRoute = inject(ActivatedRoute);
+  private _router = inject(Router);
+  private _userId = '';
+
+  ngOnInit(): void {
+    this._userId = this._activatedRoute.snapshot.paramMap.get('id') ?? '';
+
+    if (!this._userId) {
+      this._router.navigate(['/cadastro-usuario']);
+    }
+  }
 
   Register(): void {
     const bodyPerson: SignupPersonRequest = {
@@ -52,13 +60,17 @@ export class CadastroPessoa {
       }
     }
 
-    this.personService.Signup(bodyPerson).subscribe({
+    this._personService.Signup(bodyPerson, this._userId).subscribe({
       next: (response: SignupPersonResponse) => {
-        this.router.navigate(['/login']);
+        this._router.navigate(['/ativar', response.id]);
       },
       error: (err) => {
         console.log(err);
       },
     });
+  }
+
+  Cancel(): void{
+    this._router.navigate(['/login']);
   }
 }

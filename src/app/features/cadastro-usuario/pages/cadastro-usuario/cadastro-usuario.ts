@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { UserService } from '../../../../core/services/user-service';
 import { SignupUserRequest } from '../../dtos/request/signup-user.request.dto';
-import { SignupUserResponse } from '../../dtos/response/signup-user.response.dto';
 import { WizardStep } from '../../components/wizard-step/wizard-step';
+import { UserService } from '../../../../core/services/user-service';
+import { SignupUserResponse } from '../../dtos/response/signup-user.response.dto';
 
 @Component({
   selector: 'app-cadastro-usuario',
@@ -18,8 +18,8 @@ export class CadastroUsuario {
     password: new FormControl('', [Validators.required])
   });
 
-  protected userService = inject(UserService);
-  protected router = inject(Router);
+  private _userService = inject(UserService);
+  private _router = inject(Router);
 
   Register(): void {
     const bodyUser: SignupUserRequest = {
@@ -27,10 +27,9 @@ export class CadastroUsuario {
       password: this.userForm.value.password ?? ''
     };
 
-    this.userService.Signup(bodyUser).subscribe({
+    this._userService.Signup(bodyUser).subscribe({
       next: (response: SignupUserResponse) => {
-        localStorage.setItem("pass", bodyUser.password);
-        this.router.navigate(['/ativar']);
+        this._router.navigate(['/cadastro-pessoa', response.id]);
       },
       error: (err) => {
         console.log(err);

@@ -5,40 +5,65 @@ import { LoginResponse } from '../../features/auth/dtos/response/login.response.
 import { SignupUserRequest } from '../../features/cadastro-usuario/dtos/request/signup-user.request.dto';
 import { SignupUserResponse } from '../../features/cadastro-usuario/dtos/response/signup-user.response.dto';
 import { ActivationResponse } from '../../features/cadastro-usuario/dtos/response/activation-user.response.dto';
-import { Observable, tap } from 'rxjs';
+import { catchError, Observable, tap, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { Router } from '@angular/router';
+import { LocalStorageService } from './local-storage';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  private http: HttpClient = inject(HttpClient);
+  private _http: HttpClient = inject(HttpClient);
+  private _localStorageService = inject(LocalStorageService);
+  private _router = inject(Router);
 
   Login(credentials: LoginRequest): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${environment.apiUrl}/api/auth/sign-in`, credentials,
+    return this._http.post<LoginResponse>(`${environment.apiUrl}/api/auth/sign-in`, credentials,
       {
         headers: {
           'Content-Type': 'application/json',
         },
       },
+    ).pipe(
+      catchError((error) => {
+        if (error.error.error.includes("inactive")) {
+          this.ResendEmailCodeConfirmation(credentials.email);
+          let errorData = error.error.error.split(" ");
+          let userId = errorData[errorData.length - 1];
+
+          this._router.navigate(["/ativar", userId]);
+        }
+
+        if (error.error.error.includes("person")) {
+          let errorData = error.error.error.split(" ");
+          let userId = errorData[errorData.length - 1];
+
+          this._router.navigate(['/cadastro-pessoa', userId]);
+        }
+
+        return throwError(() => error);
+      })
     );
   }
 
+  private ResendEmailCodeConfirmation(userEmail: string): void {
+    this._http.post<void>(`${environment.apiUrl}/api/auth/resend-code/${userEmail}`, {}, {
+      headers: { "Content-Type": "application/json" }
+    }).subscribe();
+  }
+
   Signup(credentials: SignupUserRequest): Observable<SignupUserResponse> {
-    return this.http.post<SignupUserResponse>(`${environment.apiUrl}/api/auth/signin-up`, credentials,
+    return this._http.post<SignupUserResponse>(`${environment.apiUrl}/api/auth/signin-up`, credentials,
       {
         headers: {
           'Content-Type': 'application/json',
         },
-      }).pipe(
-        tap((response) => {
-          localStorage.setItem("email", response.email);
-        })
-      );
+      });
   }
 
-  ActivateAccount(userEmail: string, emailCode: string): Observable<ActivationResponse> {
-    return this.http.post<ActivationResponse>(`${environment.apiUrl}/api/auth/${userEmail}/active/${emailCode}`, {},
+  ActivateAccount(userId: string, emailCode: string): Observable<ActivationResponse> {
+    return this._http.post<ActivationResponse>(`${environment.apiUrl}/api/auth/${userId}/active/${emailCode}`, {},
       {
         headers: {
           'Content-Type': 'application/json',
@@ -53,7 +78,7 @@ export class UserService {
       expired_access_token: localStorage.getItem('accessToken')
     };
 
-    return this.http.post<LoginResponse>(`${environment.apiUrl}/api/auth/refresh-token`, credentials,
+    return this._http.post<LoginResponse>(`${environment.apiUrl}/api/auth/refresh-token`, credentials,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -61,8 +86,8 @@ export class UserService {
       },
     ).pipe(
       tap((response) => {
-        localStorage.setItem('accessToken', response.access_token);
-        localStorage.setItem('refreshToken', response.refresh_token);
+        this._localStorageService.SetAccessToken(response.access_token);
+        this._localStorageService.SetRefreshToken(response.refresh_token);
       }));
   }
 }

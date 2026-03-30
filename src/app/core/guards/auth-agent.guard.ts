@@ -1,10 +1,10 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { PersonServices } from '../services/person-services';
+import { PersonService } from '../services/person-services';
 import { catchError, map, of } from 'rxjs';
 
 export const authAgentGuard: CanActivateFn = (route, state) => {
-  const personService = inject(PersonServices);
+  const personService = inject(PersonService);
   const router = inject(Router);
 
   return personService.MyProfile().pipe(

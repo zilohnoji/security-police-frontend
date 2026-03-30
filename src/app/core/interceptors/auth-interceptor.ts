@@ -13,7 +13,10 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     req = req.clone({
       setHeaders: { Authorization: `Bearer ${credentials}` },
     });
+  } else {
+    return next(req);
   }
+
   return next(req).pipe(
     catchError((e: HttpErrorResponse) => {
       if (e.status !== 401) {
@@ -25,6 +28,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
           let newReq = req.clone({
             setHeaders: { Authorization: `Bearer ${res.access_token}` },
           })
+
           return next(newReq);
         }),
         catchError((e: HttpErrorResponse) => {
@@ -32,7 +36,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
           router.navigate(['/login']);
           return throwError(() => e);
         })
-      );
+      )
     })
   )
 };

@@ -1,10 +1,7 @@
-import { Component, inject, input, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, inject, OnInit } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../../../core/services/user-service';
-import { ActivationResponse } from '../../dtos/response/activation-user.response.dto';
-import { SignupStateService } from '../../../../core/services/signup-state-service';
-import { concat, concatMap, retryWhen, tap } from 'rxjs';
 import { WizardStep } from '../../components/wizard-step/wizard-step';
 
 @Component({
@@ -25,16 +22,17 @@ export class CodigoAtivacao implements OnInit {
     8: new FormControl('', Validators.required),
   })
 
-  protected signupStateService = inject(SignupStateService);
-  protected userService = inject(UserService);
-  protected route = inject(ActivatedRoute);
-  protected router = inject(Router);
+  private _activatedRoute = inject(ActivatedRoute);
+  private _userService = inject(UserService);
+  private _router = inject(Router);
+
+  private _userId = '';
 
   ngOnInit(): void {
-    if (!localStorage.getItem("email")) {
-      this.router.navigate(['/login']);
+    this._userId = this._activatedRoute.snapshot.paramMap.get('id') ?? '';
 
-      console.log("'sfsfsg")
+    if (!this._userId) {
+      this._router.navigate(['/login']);
       return;
     }
   }
@@ -57,13 +55,10 @@ export class CodigoAtivacao implements OnInit {
   }
 
   FazerAtivacao(): void {
-    const email = localStorage.getItem("email");
-    const emailCode = `${this.formCode.value[1]}${this.formCode.value[2]}${this.formCode.value[3]}${this.formCode.value[4]}${this.formCode.value[5]}${this.formCode.value[6]}${this.formCode.value[7]}${this.formCode.value[8]}
-    `.trim();
+    let emailCode = '';
 
-    if (!email) {
-      this.router.navigate(['/login']);
-      return;
+    for (const [, value] of Object.entries(this.formCode.value)) {
+      emailCode += value;
     }
 
     if (emailCode.length !== 8) {
@@ -71,20 +66,12 @@ export class CodigoAtivacao implements OnInit {
       return;
     }
 
-    this.userService.ActivateAccount(email, emailCode).pipe(
-      concatMap((response: ActivationResponse) => {
-        console.log(response);
-        let pass = localStorage.getItem("pass") ?? '';
-
-        return this.userService.Login({ email: email, password: pass }).pipe(
-          tap((res) => {
-            localStorage.setItem("accessToken", res.access_token);
-            localStorage.setItem("refreshToken", res.refresh_token);
-
-            this.router.navigate(['/cadastro-pessoa']);
-          })
-        );
-      })
-    ).subscribe();
+    this._userService.ActivateAccount(this._userId, emailCode).subscribe(
+      {
+        next: (response) => {
+          this._router.navigate(['/login']);
+        }
+      }
+    );
   }
 }

@@ -9,11 +9,11 @@ import { PersonDetailsResponse } from '../../shared/dtos/response/person/reponse
 @Injectable({
   providedIn: 'root',
 })
-export class PersonServices {
+export class PersonService {
   private http = inject(HttpClient);
 
-  Signup(credentials: SignupPersonRequest): Observable<SignupPersonResponse> {
-    return this.http.post<SignupPersonResponse>(`${environment.apiUrl}/api/persons`, credentials,
+  Signup(credentials: SignupPersonRequest, userId: string): Observable<SignupPersonResponse> {
+    return this.http.post<SignupPersonResponse>(`${environment.apiUrl}/api/persons/${userId}`, credentials,
       {
         headers: { "Content-Type": "application/json" }
       });
