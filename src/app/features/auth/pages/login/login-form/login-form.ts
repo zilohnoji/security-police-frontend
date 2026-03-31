@@ -1,9 +1,9 @@
 import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { UserService } from '../../../../../core/services/user-service';
+import { UserService } from '../../../../../core/services/user.service';
 import { Router, RouterLink } from '@angular/router';
 import { catchError, map, tap, throwError } from 'rxjs';
-import { LocalStorageService } from '../../../../../core/services/local-storage';
+import { LocalStorageService } from '../../../../../core/services/local-storage.service';
 import { LoginResponse } from '../../../dtos/response/login.response.dto';
 
 @Component({
@@ -20,7 +20,7 @@ export class LoginForm {
   private _localStorageService = inject(LocalStorageService);
   private _router: Router = inject(Router);
 
-  FazerLogin(): void {
+  Login(): void {
     this._userService.Login({ "email": this.email(), "password": this.password() }).pipe(
       map((response: LoginResponse) => {
         this._localStorageService.SetAccessToken(response.access_token);

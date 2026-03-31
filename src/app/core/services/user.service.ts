@@ -7,7 +7,7 @@ import { SignupUserResponse } from '../../features/cadastro-usuario/dtos/respons
 import { ActivationResponse } from '../../features/cadastro-usuario/dtos/response/activation-user.response.dto';
 import { Observable, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { LocalStorageService } from './local-storage';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root',

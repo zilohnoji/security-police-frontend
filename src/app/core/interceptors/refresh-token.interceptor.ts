@@ -1,8 +1,8 @@
 import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { LocalStorageService } from '../services/local-storage';
-import { UserService } from '../services/user-service';
+import { LocalStorageService } from '../services/local-storage.service';
+import { UserService } from '../services/user.service';
 import { catchError, switchMap, throwError } from 'rxjs';
 
 export const refreshTokenInterceptor: HttpInterceptorFn = (req, next) => {

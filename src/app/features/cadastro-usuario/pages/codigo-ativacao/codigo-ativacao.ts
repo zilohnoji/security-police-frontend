@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from '../../../../core/services/user-service';
+import { UserService } from '../../../../core/services/user.service';
 import { WizardStep } from '../../components/wizard-step/wizard-step';
 
 @Component({

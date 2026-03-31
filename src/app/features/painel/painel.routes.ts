@@ -7,7 +7,6 @@ export const painelRoutes: Routes = [
   {
     path: '',
     loadComponent: () => import('./painel').then(m => m.Painel),
-    canActivate: [authGuard],
     children: [
       {
         path: 'admin',

@@ -3,7 +3,7 @@ import { SignupPersonRequest } from '../../dtos/request/signup-person.request.dt
 import { SignupPersonResponse } from '../../dtos/response/signup-person.response.dto';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PersonService } from '../../../../core/services/person-services';
+import { PersonService } from '../../../../core/services/person.service';
 import { WizardStep } from '../../components/wizard-step/wizard-step';
 
 @Component({
@@ -70,7 +70,7 @@ export class CadastroPessoa implements OnInit {
     });
   }
 
-  Cancel(): void{
+  Cancel(): void {
     this._router.navigate(['/login']);
   }
 }

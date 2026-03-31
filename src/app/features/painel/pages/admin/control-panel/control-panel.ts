@@ -1,5 +1,5 @@
 import { Component, inject, signal, WritableSignal } from '@angular/core';
-import { ScaleService } from '../../../../../core/services/scale-service';
+import { ScaleService } from '../../../../../core/services/scale.service';
 import { ScaleDetailsResponse } from '../../../../../shared/dtos/response/scale/response-details.dto';
 import { Page } from '../../../../../shared/dtos/response/page.dto';
 import { DatePipe } from '@angular/common';

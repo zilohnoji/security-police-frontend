@@ -1,7 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
-import { PersonService } from '../../core/services/person-services';
-import { catchError, map } from 'rxjs';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-painel',
@@ -11,20 +10,15 @@ import { catchError, map } from 'rxjs';
 })
 export class Painel implements OnInit {
   private _router = inject(Router);
-  private _personService = inject(PersonService);
+  private _authService = inject(AuthService);
 
   ngOnInit(): void {
-    this._personService.MyProfile().pipe(
-      map((response) => {
-        const userRole = response.role.toLocaleLowerCase();
+    if (this._authService.GetUserRole() === 'admin') {
+      this._router.navigate(['/painel/admin']);
+    }
 
-        if (userRole === 'admin') this._router.navigate(['/painel/admin']);
-        if (userRole === 'agent') this._router.navigate(['/painel/agent']);
-      }),
-      catchError((error) => {
-        return error;
-      })
-    ).subscribe();
+    if (this._authService.GetUserRole() === 'agent') {
+      this._router.navigate(['/painel/agent']);
+    }
   }
-
 }

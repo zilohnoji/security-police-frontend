@@ -3,7 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router, RouterLink } from '@angular/router';
 import { SignupUserRequest } from '../../dtos/request/signup-user.request.dto';
 import { WizardStep } from '../../components/wizard-step/wizard-step';
-import { UserService } from '../../../../core/services/user-service';
+import { UserService } from '../../../../core/services/user.service';
 import { SignupUserResponse } from '../../dtos/response/signup-user.response.dto';
 
 @Component({

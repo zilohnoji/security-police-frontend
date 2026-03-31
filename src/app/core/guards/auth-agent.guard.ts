@@ -1,17 +1,15 @@
 import { inject } from '@angular/core';
-import { CanActivateFn } from '@angular/router';
-import { PersonService } from '../services/person-services';
-import { map } from 'rxjs';
+import { CanActivateFn, Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 export const authAgentGuard: CanActivateFn = (route, state) => {
-  const personService = inject(PersonService);
+  const authService = inject(AuthService);
+  const router = inject(Router);
 
-  return personService.MyProfile().pipe(
-    map((response) => {
-      if (response.role.toLowerCase() === 'agent') {
-        return true;
-      }
-      return false;
-    })
-  )
+  if (authService.GetUserRole() === 'agent') {
+    return true;
+  } else if (authService.GetUserRole() === 'admin') {
+    return router.parseUrl('/painel/admin');
+  }
+  return false;
 };
