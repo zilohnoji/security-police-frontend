@@ -1,0 +1,31 @@
+<div>
+  <header class="header-content">
+    <h1 class="title">Obsidian OPS</h1>
+    <h2 class="subtitle">Comando Militar</h2>
+  </header>
+  <aside>
+    <nav>
+      <ul class="navigation">
+        @for (item of this.models(); track $index) {
+        <li>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+            <path stroke-linecap="round" stroke-linejoin="round" [attr.d]="item.icon" />
+          </svg>
+          <a [routerLink]="item.router">{{item.label}}</a>
+        </li>
+        }
+      </ul>
+    </nav>
+  </aside>
+</div>
+<footer>
+  <div class="profile">
+    <div>
+      FOTO USUARIO
+    </div>
+    <div>
+      <p>NOME USUÁRIO</p>
+      <p>EMAIL USUARIO</p>
+    </div>
+  </div>
+</footer>

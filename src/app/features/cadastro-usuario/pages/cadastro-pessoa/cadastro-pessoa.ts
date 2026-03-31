@@ -62,7 +62,7 @@ export class CadastroPessoa implements OnInit {
 
     this._personService.Signup(bodyPerson, this._userId).subscribe({
       next: (response: SignupPersonResponse) => {
-        this._router.navigate(['/ativar', response.id]);
+        this._router.navigate(['/ativar', this._userId]);
       },
       error: (err) => {
         console.log(err);

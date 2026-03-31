@@ -5,9 +5,8 @@ import { LoginResponse } from '../../features/auth/dtos/response/login.response.
 import { SignupUserRequest } from '../../features/cadastro-usuario/dtos/request/signup-user.request.dto';
 import { SignupUserResponse } from '../../features/cadastro-usuario/dtos/response/signup-user.response.dto';
 import { ActivationResponse } from '../../features/cadastro-usuario/dtos/response/activation-user.response.dto';
-import { catchError, Observable, tap, throwError } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { Router } from '@angular/router';
 import { LocalStorageService } from './local-storage';
 
 @Injectable({
@@ -16,7 +15,6 @@ import { LocalStorageService } from './local-storage';
 export class UserService {
   private _http: HttpClient = inject(HttpClient);
   private _localStorageService = inject(LocalStorageService);
-  private _router = inject(Router);
 
   Login(credentials: LoginRequest): Observable<LoginResponse> {
     return this._http.post<LoginResponse>(`${environment.apiUrl}/api/auth/sign-in`, credentials,
@@ -25,32 +23,13 @@ export class UserService {
           'Content-Type': 'application/json',
         },
       },
-    ).pipe(
-      catchError((error) => {
-        if (error.error.error.includes("inactive")) {
-          this.ResendEmailCodeConfirmation(credentials.email);
-          let errorData = error.error.error.split(" ");
-          let userId = errorData[errorData.length - 1];
-
-          this._router.navigate(["/ativar", userId]);
-        }
-
-        if (error.error.error.includes("person")) {
-          let errorData = error.error.error.split(" ");
-          let userId = errorData[errorData.length - 1];
-
-          this._router.navigate(['/cadastro-pessoa', userId]);
-        }
-
-        return throwError(() => error);
-      })
     );
   }
 
-  private ResendEmailCodeConfirmation(userEmail: string): void {
-    this._http.post<void>(`${environment.apiUrl}/api/auth/resend-code/${userEmail}`, {}, {
+  public ResendEmailCodeConfirmation(userEmail: string): Observable<void> {
+    return this._http.post<void>(`${environment.apiUrl}/api/auth/resend-code/${userEmail}`, {}, {
       headers: { "Content-Type": "application/json" }
-    }).subscribe();
+    });
   }
 
   Signup(credentials: SignupUserRequest): Observable<SignupUserResponse> {
@@ -74,8 +53,8 @@ export class UserService {
 
   RefreshToken(): Observable<LoginResponse> {
     const credentials = {
-      refresh_token: localStorage.getItem('refreshToken'),
-      expired_access_token: localStorage.getItem('accessToken')
+      refresh_token: this._localStorageService.GetRefreshToken(),
+      expired_access_token: this._localStorageService.GetAccessToken()
     };
 
     return this._http.post<LoginResponse>(`${environment.apiUrl}/api/auth/refresh-token`, credentials,
@@ -84,10 +63,9 @@ export class UserService {
           'Content-Type': 'application/json',
         },
       },
-    ).pipe(
-      tap((response) => {
-        this._localStorageService.SetAccessToken(response.access_token);
-        this._localStorageService.SetRefreshToken(response.refresh_token);
-      }));
+    ).pipe(tap((response) => {
+      this._localStorageService.SetAccessToken(response.access_token);
+      this._localStorageService.SetRefreshToken(response.refresh_token);
+    }));
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -8,5 +8,12 @@ import { RouterLink } from '@angular/router';
   styleUrl: './sidenav.scss',
 })
 export class Sidenav {
+  public models = input.required<SidenavModel[]>();
 
+}
+
+export interface SidenavModel {
+  label: string,
+  router: string,
+  icon?: string
 }
