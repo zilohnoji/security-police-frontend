@@ -13,6 +13,7 @@
   flex-direction: column;
   gap: 2rem;
 
+
   & .split-header {
     display: flex;
     align-items: start;
@@ -50,6 +51,92 @@
       color: #A1A1AA;
       font-size: 1rem;
       font-weight: 100;
+    }
+  }
+
+  & .upload-area {
+    & .file-input {
+      display: none;
+    }
+
+    & .profile-photo-upload {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      & .container-upload {
+        gap: .5rem;
+        color: #71717a;
+        font-size: 1rem;
+        font-weight: 600;
+        display: flex;
+        height: 12rem;
+        width: 12rem;
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background-color: #121215;
+        position: relative;
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        &.filled {
+          border: 1px solid #27272a;
+          border-width: 2px;
+          overflow: visible;
+          
+          &::before {
+            content: "";
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            z-index: 2;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            background-color: #a78bfa;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%2309000b' d='M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32L19.513 8.2Z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 52%;
+            pointer-events: none;
+          }
+        }
+
+        &.empty {
+          border: 1px dashed #27272a;
+          border-width: 2px;
+        }
+
+        & object,
+        img {
+          position: relative;
+          z-index: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 50%;
+          pointer-events: none;
+        }
+
+        &.empty::after {
+          content: "+";
+          right: 0px;
+          bottom: 0px;
+          position: absolute;
+          text-align: center;
+          color: #09090b;
+          font-size: 2rem;
+          height: 3rem;
+          width: 3rem;
+          border-radius: 50%;
+          background-color: #A78BFA;
+        }
+      }
+
     }
   }
 

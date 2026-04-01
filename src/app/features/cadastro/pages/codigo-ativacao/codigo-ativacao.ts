@@ -66,7 +66,7 @@ export class CodigoAtivacao implements OnInit {
       return;
     }
 
-    this._userService.ActivateAccount(this._userId, emailCode).subscribe(
+    this._userService.ActivateAccount({ user_id: this._userId, email_code: emailCode }).subscribe(
       {
         next: (response) => {
           this._router.navigate(['/login']);

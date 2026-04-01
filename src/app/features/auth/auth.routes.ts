@@ -20,19 +20,19 @@ export const authRoutes: Routes = [
       },
       {
         path: 'cadastro-usuario',
-        loadComponent: () => import('../cadastro-usuario/pages/cadastro-usuario/cadastro-usuario').then(m => m.CadastroUsuario),
+        loadComponent: () => import('../cadastro/pages/cadastro-usuario/cadastro-usuario').then(m => m.CadastroUsuario),
         title: 'Cadastro',
         canActivate: [publicOnlyGuard],
       },
       {
         path: 'cadastro-pessoa/:id',
-        loadComponent: () => import('../cadastro-usuario/pages/cadastro-pessoa/cadastro-pessoa').then(m => m.CadastroPessoa),
+        loadComponent: () => import('../cadastro/pages/cadastro-pessoa/cadastro-pessoa').then(m => m.CadastroPessoa),
         title: 'Dados Pessoais',
         canActivate: [publicOnlyGuard]
       },
       {
         path: 'ativar/:id',
-        loadComponent: () => import('../cadastro-usuario/pages/codigo-ativacao/codigo-ativacao').then(m => m.CodigoAtivacao),
+        loadComponent: () => import('../cadastro/pages/codigo-ativacao/codigo-ativacao').then(m => m.CodigoAtivacao),
         title: 'Ativação',
         canActivate: [publicOnlyGuard],
       }

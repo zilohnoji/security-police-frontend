@@ -1,10 +1,27 @@
-<app-wizard-step actualStep="personalData"/>
+<app-wizard-step actualStep="personalData" />
 
 <div class="auth-split">
   <div class="split-header">
     <span>Ficha Cadastral</span>
     <h1 class="title">Dados Pessoais do Agente</h1>
     <h2 class="subtitle">Preencha os campos abaixo com as informações oficiais para registro no Ops.</h2>
+  </div>
+  <div class="upload-area">
+    <input #fileUpload type="file" required class="file-input" (change)="UploadFile($event)" [(ngModel)]="this.photoInput">
+    <div class="profile-photo-upload">
+      @if(this.profilePhoto()){
+      <div (click)="fileUpload.click()" class="container-upload filled">
+        <img [src]="this.profilePhoto()?.downloadUri" alt="">
+      </div>
+      } @else {
+      <div (click)="fileUpload.click()" class="container-upload empty">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-15">
+          <path fill-rule="evenodd" d="M1 8a2 2 0 0 1 2-2h.93a2 2 0 0 0 1.664-.89l.812-1.22A2 2 0 0 1 8.07 3h3.86a2 2 0 0 1 1.664.89l.812 1.22A2 2 0 0 0 16.07 6H17a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8Zm13.5 3a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM10 14a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clip-rule="evenodd" />
+        </svg>
+        <span class="detail">FOTO DE PERFIL</span>
+      </div>
+      }
+    </div>
   </div>
   <div class="container">
     <div class="container-identify">
@@ -102,7 +119,7 @@
       </svg>
       Cancelar
     </button>
-    <button [disabled]="!this.personForm.valid" (click)="Register()" class="save-btn">Salvar e Continuar
+    <button [disabled]="!this.personForm.valid || !this.photoInput" (click)="Register()" class="save-btn">Salvar e Continuar
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
         <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
       </svg>

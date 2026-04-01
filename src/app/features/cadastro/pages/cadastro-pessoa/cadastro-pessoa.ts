@@ -1,18 +1,22 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { SignupPersonRequest } from '../../dtos/request/signup-person.request.dto';
 import { SignupPersonResponse } from '../../dtos/response/signup-person.response.dto';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PersonService } from '../../../../core/services/person.service';
 import { WizardStep } from '../../components/wizard-step/wizard-step';
+import { catchError, tap, throwError } from 'rxjs';
+import { DocumentDetailsResponse } from '../../../../shared/dtos/response/document/response-details.dto';
+import { SafePipe } from "../../../../core/pipes/safe.pipe";
 
 @Component({
   selector: 'app-cadastro-pessoa',
-  imports: [ReactiveFormsModule, WizardStep],
+  imports: [ReactiveFormsModule, WizardStep, FormsModule, SafePipe],
   templateUrl: './cadastro-pessoa.html',
   styleUrl: './cadastro-pessoa.scss',
 })
 export class CadastroPessoa implements OnInit {
+  protected photoInput = '';
   protected personForm = new FormGroup({
     fullName: new FormControl('', [Validators.required]),
     birthDate: new FormControl('', [Validators.required]),
@@ -25,6 +29,8 @@ export class CadastroPessoa implements OnInit {
     cityName: new FormControl('', [Validators.required]),
     cityUf: new FormControl('', [Validators.required]),
   });
+
+  protected profilePhoto = signal<DocumentDetailsResponse | null>(null);
 
   private _personService = inject(PersonService);
   private _activatedRoute = inject(ActivatedRoute);
@@ -72,5 +78,34 @@ export class CadastroPessoa implements OnInit {
 
   Cancel(): void {
     this._router.navigate(['/login']);
+  }
+
+  UploadFile(e: Event): void {
+    let files = null;
+
+    if (e.target) {
+      files = (e.target as HTMLInputElement).files;
+    }
+
+    let file = null;
+
+    if (files && files.length > 0) {
+      file = files[0];
+    }
+
+    if (file) {
+      const formData = new FormData();
+      formData.append("file", file);
+
+      this._personService.UploadPhoto({ user_id: this._userId, file: formData }).pipe(
+        tap((response) => {
+          this.profilePhoto.set(response);
+        }),
+        catchError((error) => {
+          console.log(error);
+          return throwError(() => error);
+        })
+      ).subscribe();
+    }
   }
 }

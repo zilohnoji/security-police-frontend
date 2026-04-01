@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { LoginRequest } from '../../features/auth/dtos/request/login.request.dto';
 import { LoginResponse } from '../../features/auth/dtos/response/login.response.dto';
-import { SignupUserRequest } from '../../features/cadastro-usuario/dtos/request/signup-user.request.dto';
-import { SignupUserResponse } from '../../features/cadastro-usuario/dtos/response/signup-user.response.dto';
-import { ActivationResponse } from '../../features/cadastro-usuario/dtos/response/activation-user.response.dto';
 import { Observable, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { LocalStorageService } from './local-storage.service';
+import { SignupUserRequest } from '../../features/cadastro/dtos/request/signup-user.request.dto';
+import { ActivationResponse } from '../../features/cadastro/dtos/response/activation-user.response.dto';
+import { SignupUserResponse } from '../../features/cadastro/dtos/response/signup-user.response.dto';
+import { ActivationAccountRequest,  } from '../../features/cadastro/dtos/request/activation-user.request.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -41,8 +42,8 @@ export class UserService {
       });
   }
 
-  ActivateAccount(userId: string, emailCode: string): Observable<ActivationResponse> {
-    return this._http.post<ActivationResponse>(`${environment.apiUrl}/api/auth/${userId}/active/${emailCode}`, {},
+  ActivateAccount(credentials: ActivationAccountRequest): Observable<ActivationResponse> {
+    return this._http.post<ActivationResponse>(`${environment.apiUrl}/api/auth/${credentials.user_id}/active/${credentials.email_code}`, {},
       {
         headers: {
           'Content-Type': 'application/json',

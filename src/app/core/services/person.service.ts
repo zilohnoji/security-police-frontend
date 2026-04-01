@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { SignupPersonRequest } from '../../features/cadastro-usuario/dtos/request/signup-person.request.dto';
-import { SignupPersonResponse } from '../../features/cadastro-usuario/dtos/response/signup-person.response.dto';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { PersonDetailsResponse } from '../../shared/dtos/response/person/reponse-details.dto';
+import { SignupPersonRequest } from '../../features/cadastro/dtos/request/signup-person.request.dto';
+import { SignupPersonResponse } from '../../features/cadastro/dtos/response/signup-person.response.dto';
+import { DocumentDetailsResponse } from '../../shared/dtos/response/document/response-details.dto';
+import { UploadDocumentRequest } from '../../shared/dtos/request/document/request-upload-document.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -25,5 +27,10 @@ export class PersonService {
         headers: { "Content-Type": "application/json" }
       }
     );
+  }
+
+  UploadPhoto(file: UploadDocumentRequest): Observable<DocumentDetailsResponse> {
+    console.log(file);
+    return this.http.post<DocumentDetailsResponse>(`${environment.apiUrl}/api/persons/profile/photo/${file.user_id}`, file.file);
   }
 }

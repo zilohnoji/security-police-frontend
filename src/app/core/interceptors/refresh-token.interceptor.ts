@@ -9,18 +9,12 @@ export const refreshTokenInterceptor: HttpInterceptorFn = (req, next) => {
   const localStorageService = inject(LocalStorageService);
   const userService = inject(UserService);
   const router = inject(Router);
-
-  const accessToken = localStorageService.GetAccessToken();
-  const refreshToken = localStorageService.GetRefreshToken();
-
-  if (!accessToken || !refreshToken) {
-    router.navigate(["/login"]);
-    return next(req);
-  };
-
   return next(req.clone()).pipe(
     catchError((e: HttpErrorResponse) => {
-      if (e.status === 401) {
+      const accessToken = localStorageService.GetAccessToken();
+      const refreshToken = localStorageService.GetRefreshToken();
+
+      if (e.status === 401 && (accessToken && refreshToken)) {
         return userService.RefreshToken().pipe(
           switchMap((res) => {
             return next(req.clone({
