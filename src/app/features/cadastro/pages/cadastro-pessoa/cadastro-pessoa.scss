@@ -1,18 +1,17 @@
 :host {
   display: flex;
-  padding: 2rem 0;
+  gap: 2rem;
   min-height: 100vh;
   align-items: center;
-  background-color: #09090b;
+  padding: 2rem 12rem;
+  justify-content: start;
   flex-direction: column;
-  gap: 2rem;
+  background-color: #09090b;
 }
 
 .auth-split {
-  display: flex;
-  flex-direction: column;
   gap: 2rem;
-
+  display: grid;
 
   & .split-header {
     display: flex;
@@ -87,7 +86,7 @@
           border: 1px solid #27272a;
           border-width: 2px;
           overflow: visible;
-          
+
           &::before {
             content: "";
             position: absolute;

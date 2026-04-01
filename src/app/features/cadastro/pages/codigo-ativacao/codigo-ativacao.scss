@@ -105,11 +105,11 @@
         cursor: pointer;
         background-color: #A78BFA;
 
-        & svg:has(button:enabled){
+        & svg:has(button:enabled) {
           cursor: pointer;
         }
 
-        & button:enabled{
+        & button:enabled {
           cursor: pointer
         }
 

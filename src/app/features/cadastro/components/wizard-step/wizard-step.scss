@@ -5,16 +5,49 @@
 }
 
 .container-steps {
+  width: 100%;
   display: flex;
-  gap: 8rem;
+  align-items: center;
+  justify-content: space-between;
 
   & .container-step {
+    flex: 1;
     display: flex;
-    align-items: center;
     justify-content: center;
-    flex-direction: column;
+    align-items: flex-start;
 
-    & div {
+    &::before {
+      content: "";
+      height: 2px;
+      width: 100%;
+      display: block;
+      margin-top: 1.5rem;
+      background-color: transparent;
+    }
+
+    &::after {
+      content: "";
+      height: 2px;
+      width: 100%;
+      display: block;
+      margin-top: 1.5rem;
+      background-color: transparent;
+    }
+
+    /* linha à direita só entre dois passos .active consecutivos (não no último .active da sequência) */
+    &.active::after {
+      background-color: transparent;
+    }
+
+    &.active:has(+ .container-step.active)::after {
+      background-color: #a78bfa;
+    }
+
+    &.active+.container-step.active::before {
+      background-color: #A78BFA;
+    }
+
+    & .step-content {
       color: #1E1E1E;
       padding: .5rem;
       border-radius: 100%;
@@ -29,27 +62,24 @@
       font-weight: 600;
       text-transform: uppercase;
     }
-  }
 
-  & .container-step.active {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+    &.active {
+      display: flex;
 
-    & div {
-      color: #1E1E1E;
-      padding: .5rem;
-      border-radius: 100%;
-      background-color: #a78bfa;
-    }
+      & .step-content {
+        color: #1E1E1E;
+        padding: .5rem;
+        border-radius: 100%;
+        background-color: #a78bfa;
+      }
 
-    & span {
-      margin-top: 8px;
-      font-size: 14px;
-      color: #A78BFA;
-      font-weight: 600;
-      text-transform: uppercase;
+      & span {
+        margin-top: 8px;
+        font-size: 14px;
+        color: #A78BFA;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
     }
   }
 }

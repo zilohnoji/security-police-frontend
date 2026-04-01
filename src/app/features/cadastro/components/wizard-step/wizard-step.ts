@@ -1,4 +1,4 @@
-import { Component, input, signal } from '@angular/core';
+import { Component, input, OnInit, signal } from '@angular/core';
 
 @Component({
   selector: 'app-wizard-step',
@@ -6,10 +6,9 @@ import { Component, input, signal } from '@angular/core';
   templateUrl: './wizard-step.html',
   styleUrl: './wizard-step.scss',
 })
-export class WizardStep {
-  public currentStepIndex = 0;
-  public actualStep = input.required();
-
+export class WizardStep implements OnInit {
+  public currentStepIndex = signal(0);
+  public actualStep = input.required<string>();
   protected steps = signal<WirzardStep[]>([
     {
       id: "register",
@@ -28,14 +27,22 @@ export class WizardStep {
       label: "Ativação",
       isValid: false,
       icon: "m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z"
-    },
-    // {
-    //   id: "completed",
-    //   label: "Concluído",
-    //   isValid: false,
-    //   icon: "M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-    // }
+    }
   ]);
+
+  ngOnInit(): void {
+    const actualStep = this.steps().find(t => t.id === this.actualStep());
+
+    if (actualStep) {
+      this.currentStepIndex.set(this.steps().indexOf(actualStep));
+    }
+
+    for (let i = 0; i <= this.currentStepIndex(); i++) {
+      this.steps()[i].isValid = true;
+    }
+
+    console.log(this.steps());
+  }
 }
 
 export interface WirzardStep {
