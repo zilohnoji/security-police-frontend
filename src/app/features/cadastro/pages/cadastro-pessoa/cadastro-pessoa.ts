@@ -7,11 +7,10 @@ import { PersonService } from '../../../../core/services/person.service';
 import { WizardStep } from '../../components/wizard-step/wizard-step';
 import { catchError, tap, throwError } from 'rxjs';
 import { DocumentDetailsResponse } from '../../../../shared/dtos/response/document/response-details.dto';
-import { SafePipe } from "../../../../core/pipes/safe.pipe";
 
 @Component({
   selector: 'app-cadastro-pessoa',
-  imports: [ReactiveFormsModule, WizardStep, FormsModule, SafePipe],
+  imports: [ReactiveFormsModule, WizardStep, FormsModule],
   templateUrl: './cadastro-pessoa.html',
   styleUrl: './cadastro-pessoa.scss',
 })
