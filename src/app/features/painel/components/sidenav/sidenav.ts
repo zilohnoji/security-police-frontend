@@ -1,5 +1,6 @@
 import { Component, input, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { PersonDetailsResponse } from '../../../../shared/dtos/response/person/reponse-details.dto';
 
 @Component({
   selector: 'app-sidenav',
@@ -9,7 +10,7 @@ import { RouterLink } from '@angular/router';
 })
 export class Sidenav {
   public models = input.required<SidenavModel[]>();
-
+  public profileData = input<PersonDetailsResponse | null>(null);
 }
 
 export interface SidenavModel {

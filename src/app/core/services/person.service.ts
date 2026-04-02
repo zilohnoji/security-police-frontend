@@ -30,7 +30,6 @@ export class PersonService {
   }
 
   UploadPhoto(file: UploadDocumentRequest): Observable<DocumentDetailsResponse> {
-    console.log(file);
     return this.http.post<DocumentDetailsResponse>(`${environment.apiUrl}/api/persons/profile/photo/${file.user_id}`, file.file);
   }
 }

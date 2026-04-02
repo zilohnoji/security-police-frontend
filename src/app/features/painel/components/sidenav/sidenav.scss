@@ -50,7 +50,31 @@
 
 footer {
   .profile {
-    display: flex;
     gap: 1rem;
+    display: flex;
+    padding-top: 2rem;
+    border-radius: 2px;
+    border-top: 1px solid #27272A;
+
+    & .container-photo {
+      max-width: 3rem;
+      max-width: 3rem;
+      border-radius: 50%;
+
+      & img {
+        border-radius: 50%;
+      }
+    }
+
+    & .container-data {
+      & .name {
+        color: #FAFAFA;
+        font-weight: 600;
+      }
+
+      & .role {
+        color: #71717A;
+      }
+    }
   }
 }

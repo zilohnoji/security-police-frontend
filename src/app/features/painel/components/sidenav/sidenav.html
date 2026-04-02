@@ -20,12 +20,12 @@
 </div>
 <footer>
   <div class="profile">
-    <div>
-      FOTO USUARIO
+    <div class="container-photo">
+      <img [src]="this.profileData()?.profile?.photo?.downloadUri" alt="">
     </div>
-    <div>
-      <p>NOME USUÁRIO</p>
-      <p>EMAIL USUARIO</p>
+    <div class="container-data">
+      <p class="name">{{this.profileData()?.profile?.name}}</p>
+      <p class="role" [class.admin]="this.profileData()?.role === 'Admin'">{{this.profileData()?.role}}</p>
     </div>
   </div>
 </footer>

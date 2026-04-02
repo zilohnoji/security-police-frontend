@@ -40,8 +40,6 @@ export class WizardStep implements OnInit {
     for (let i = 0; i <= this.currentStepIndex(); i++) {
       this.steps()[i].isValid = true;
     }
-
-    console.log(this.steps());
   }
 }
 
