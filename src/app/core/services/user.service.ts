@@ -58,7 +58,7 @@ export class UserService {
       expired_access_token: this._localStorageService.GetAccessToken()
     };
 
-    return this._http.post<LoginResponse>(`${environment.apiUrl}/api/auth/refresh-token`, credentials,
+    return this._http.post<LoginResponse>(`${environment.apiUrl}/api/refresh-token`, credentials,
       {
         headers: {
           'Content-Type': 'application/json',

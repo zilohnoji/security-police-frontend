@@ -1,8 +1,7 @@
 import { Component, inject, signal, WritableSignal } from '@angular/core';
-import { ScaleService } from '../../../../../core/services/scale.service';
 import { ScaleDetailsResponse } from '../../../../../shared/dtos/response/scale/response-details.dto';
-import { Page } from '../../../../../shared/dtos/response/page.dto';
 import { DatePipe } from '@angular/common';
+import { AuthService } from '../../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-control-panel',
@@ -11,13 +10,15 @@ import { DatePipe } from '@angular/common';
   styleUrl: './control-panel.scss',
 })
 export class ControlPanel {
-  private scaleService = inject(ScaleService);
-  protected scales: WritableSignal<Page<ScaleDetailsResponse> | null> = signal(null);
+  private readonly _authService = inject(AuthService);
+  protected scales = signal<ScaleDetailsResponse[] | null>(null);
 
   ngAfterViewInit() {
-    this.scaleService.GetScales().subscribe((response) => {
-      this.scales.set(response);
-    });
+    const authUser = this._authService.GetAuthenticatedUser();
+
+    if (authUser) {
+      this.scales.set(authUser.scales);
+    }
   }
 
   protected FormatDate(date: Date): string {

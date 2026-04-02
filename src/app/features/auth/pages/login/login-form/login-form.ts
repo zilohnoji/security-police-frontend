@@ -2,7 +2,7 @@ import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UserService } from '../../../../../core/services/user.service';
 import { Router, RouterLink } from '@angular/router';
-import { catchError, map, tap, throwError } from 'rxjs';
+import { catchError, map, throwError } from 'rxjs';
 import { LocalStorageService } from '../../../../../core/services/local-storage.service';
 import { LoginResponse } from '../../../dtos/response/login.response.dto';
 
