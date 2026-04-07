@@ -1,4 +1,4 @@
-import { Component, input, OnInit, signal } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { PersonDetailsResponse } from '../../../../shared/dtos/response/person/reponse-details.dto';
 

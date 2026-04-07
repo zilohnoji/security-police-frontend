@@ -1,0 +1,38 @@
+.card {
+  display: grid;
+  padding: 2rem;
+  border-radius: 8px;
+  background-color: #121215;
+  border: 1px solid #27272A;
+  grid-template-columns: 1fr auto;
+
+  & .title-card {
+    color: #71717A;
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+
+  & .value-card {
+    color: #FAFAFA;
+    font-size: 36px;
+  }
+
+  & .warning-card {
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &.info {
+      color: #A78BFA;
+    }
+
+    &.attention {
+      color: #EF4444;
+    }
+
+    &.better {
+      color: #34D399;
+    }
+  }
+}

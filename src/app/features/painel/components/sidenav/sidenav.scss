@@ -8,42 +8,64 @@
 }
 
 .header-content {
+  gap: 1rem;
+  display: flex;
   margin-bottom: 2rem;
+  align-items: center;
 
-  .title {
-    color: gray;
-    font-size: 1.5rem;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+  & .icon-container {
+    width: 4rem;
+    height: 4rem;
+    
+    & .icon {
+      width: 4rem;
+      height: 4rem;
+      border-radius: 4px;
+    }
   }
 
-  .subtitle {
-    color: zinc;
-    font-size: 1rem;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  & .container-title {
+    & .title {
+      color: zinc;
+      font-weight: 600;
+      font-size: 1.5rem;
+      font-family: 'Geist', Arial, sans-serif;
+    }
+
+    & .subtitle {
+      color: #71717A;
+      font-size: 1rem;
+      font-weight: 600;
+      font-family: 'Liberation Serif', Arial, sans-serif;
+    }
   }
 }
 
 .navigation {
   list-style: none;
 
-  li {
-    cursor: pointer;
-    padding: 1rem 0;
-    display: flex;
-    align-items: center;
+  & .nav-item {
     gap: 0.5rem;
+    display: flex;
+    padding: 1rem 0;
+    cursor: pointer;
+    align-items: center;
 
-    a {
+    &:hover a {
+      color: #A78BFA;
+    }
+
+    & a {
       color: white;
+      font-weight: 600;
       text-decoration: none;
     }
 
     &:hover {
-      a {
-        color: purple;
-      }
-
-      border-right: 2px solid white;
+      color: #A78BFA;
+      border-right: 2px solid #A78BFA;
+      background-color: rgba($color: #A78BFA, $alpha: 0.03);
     }
   }
 }

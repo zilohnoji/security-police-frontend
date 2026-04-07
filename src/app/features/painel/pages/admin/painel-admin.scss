@@ -3,7 +3,16 @@
   display: grid;
   grid-template-columns: 350px auto;
 
-  .panel-content {
+  & .container-sidenav {
+    height: 100vh;
+
+    & .sidenav {
+      height: 100vh;
+      position: fixed;
+    }
+  }
+
+  & .panel-content {
     height: 100%;
     padding: 1rem 2rem;
   }

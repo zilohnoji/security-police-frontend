@@ -1,5 +1,7 @@
 <div class="panel-container">
-  <app-sidenav [models]="this.models()" [profileData]="this._authService.GetAuthenticatedUser()"/>
+  <div class="container-sidenav">
+    <app-sidenav [models]="this.models()" [profileData]="this._authService.GetAuthenticatedUser()" class="sidenav" />
+  </div>
   <main class="panel-content">
     <router-outlet />
   </main>
