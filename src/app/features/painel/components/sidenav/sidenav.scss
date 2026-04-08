@@ -17,7 +17,7 @@
   & .icon-container {
     width: 4rem;
     height: 4rem;
-    
+
     & .icon {
       width: 4rem;
       height: 4rem;
@@ -71,14 +71,50 @@
 }
 
 footer {
+  position: relative;
+
+  & .menu {
+    width: 100%;
+    position: absolute;
+    border-radius: 12px;
+    border: 1px solid #27272A;
+    bottom: calc(100% - 10px);
+    background-color: #121215;
+
+    & ul {
+      display: flex;
+      flex-direction: column;
+
+      & li {
+        gap: 1rem;
+        padding: .8rem 1rem;
+        display: flex;
+        color: #A1A1AA;
+        cursor: pointer;
+        font-weight: 600;
+        align-items: center;
+
+        &:hover {
+          background-color: rgba($color: #A1A1AA, $alpha: 0.1);
+        }
+
+        &.exit-btn {
+          color: #EF4444;
+        }
+      }
+    }
+  }
+
   .profile {
     gap: 1rem;
     display: flex;
     padding-top: 2rem;
     border-radius: 2px;
     border-top: 1px solid #27272A;
+    user-select: none;
 
     & .container-photo {
+      cursor: pointer;
       max-width: 3rem;
       max-width: 3rem;
       border-radius: 50%;
